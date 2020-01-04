@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_LENGTH_PATH 100
-//this algorithm works only if there is exactly one exit
+
 int m,n;
 int row[] =    {-1, 0, 1, 0};
 int column[] = { 0, 1, 0,-1};
@@ -22,6 +22,7 @@ int main() {
             fscanf(lab,"%d",&labyrinth[i][j]);
         }
     }
+    fclose(lab);
     //reading the initial position
     int i,j;
     printf("Choose initial position:\n"
@@ -36,6 +37,10 @@ int main() {
     labyrinth_paths(labyrinth,i,j,&no_traces,path_index,path_x,path_y);
     //printing no of traces
     printf("The number of traces is: %d",no_traces);
+    for(int k=1;k<=m;k++){
+        free(labyrinth[k]);
+    }
+    free(labyrinth);
     return 0;
 }
 int lab_exit(int i,int j){
